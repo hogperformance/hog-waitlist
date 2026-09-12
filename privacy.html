@@ -194,6 +194,11 @@
             line-height: 1.8;
         }
 
+        .legal-block a {
+            color: var(--coyote-light);
+            text-decoration: underline;
+        }
+
         .legal-block ul {
             list-style: none;
             margin-top: 10px;
@@ -226,11 +231,32 @@
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.15em;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .footer-social .sep {
+            color: var(--coyote);
+            font-weight: 700;
         }
 
         footer a {
             color: var(--muted-2);
-            text-decoration: underline;
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
         footer a:hover {
@@ -257,7 +283,7 @@
             footer {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 12px;
+                gap: 16px;
             }
         }
     </style>
@@ -268,7 +294,7 @@
 <div class="page">
 
     <header>
-        <a href="20260911_HOG_Waitlist_Page_v03.2.html" class="logo">
+        <a href="index.html" class="logo">
             <img src="HOG_Logo_Concept_003.svg" 
                  alt="HOG Performance Logo" 
                  class="logo-img"
@@ -278,81 +304,145 @@
             <div class="logo-text black-ops-one-regular">HOG <span>PERFORMANCE</span></div>
         </a>
 
-        <a href="20260911_HOG_Waitlist_Page_v03.2.html" class="back-link">← VISSZA A VÁRÓLISTÁHOZ</a>
+        <a href="index.html" class="back-link">← VISSZA A VÁRÓLISTÁHOZ</a>
     </header>
 
     <main>
         <div class="doc-header">
             <span class="doc-tag">LEGAL DOCUMENT // PRIVACY POLICY</span>
             <h1 class="black-ops-one-regular">ADATKEZELÉSI TÁJÉKOZTATÓ</h1>
+            <p style="color: var(--muted-2); font-size: 13px; margin-top: 8px;">Hatályos: 2026. szeptember 12.</p>
         </div>
 
         <section class="legal-block">
             <h2>1. AZ ADATKEZELŐ</h2>
             <p>
-                A <strong>HOG Performance</strong> weboldalán (a továbbiakban: "Weboldal") végzett adatkezelési tevékenységekért az alábbi adatkezelő felelős:
+                A HOG Performance márka előkészítéséhez és a HOG Performance várólistájának működtetéséhez kapcsolódó adatkezelés jelenleg az alábbi adatkezelőhöz tartozik:
             </p>
             <ul>
+                <li><strong>Adatkezelő (természetes személy):</strong> Tóth Flórián</li>
                 <li><strong>Márkanév:</strong> HOG Performance</li>
-                <li><strong>Üzemeltető / Adatkezelő:</strong> Tóth Flórián E.V.</li>
-                <li><strong>Székhely:</strong> 8000 Székesfehérvár, Magyarország</li>
-                <li><strong>E-mail elérhetőség:</strong> info@hogperformance.hu</li>
-            </ul>
-        </section>
-
-        <section class="legal-block">
-            <h2>2. A KEZELT ADATOK KÖRE ÉS CÉLJA</h2>
-            <p>
-                A Weboldalon kizárólag a várólistára történő feliratkozáshoz szükséges adatokat gyűjtjük. Nincs rejtett adatgyűjtés.
-            </p>
-            <ul>
-                <li><strong>Kezelt adat:</strong> E-mail cím.</li>
-                <li><strong>Az adatkezelés célja:</strong> Értesítés küldése a HOG Performance termékeinek és márkájának indulásáról, a limitált kiadásokról, valamint a várólista tagjainak járó exkluzív ajándékokról és információkról.</li>
-                <li><strong>Az adatkezelés jogalapja:</strong> Az Európai Parlament és a Tanács (EU) 2016/679 Rendelete (GDPR) 6. cikk (1) bekezdés a) pontja alapján az Ön <strong>önkéntes hozzájárulása</strong>.</li>
-            </ul>
-        </section>
-
-        <section class="legal-block">
-            <h2>3. AZ ADATOK TÁROLÁSÁNAK IDŐTARTAMA</h2>
-            <p>
-                Az Ön e-mail címét a hozzájárulás visszavonásáig (a várólistáról / hírlevélről való leiratkozásig) kezeljük. Ön bármikor, korlátozás és indokolás nélkül ingyenesen leiratkozhat a kiküldött e-mailek alján található <em>"Leiratkozás"</em> gombra kattintva, vagy az info@hogperformance.hu e-mail címre küldött üzenettel.
-            </p>
-        </section>
-
-        <section class="legal-block">
-            <h2>4. ADATFELDOLGOZÓK (HARMADIK FELEK)</h2>
-            <p>
-                Az adatok biztonságos tárolásához és a hírlevelek / értesítések kiküldéséhez külső adatfeldolgozót veszünk igénybe, aki a GDPR előírásainak teljes mértékben megfelel:
-            </p>
-            <ul>
-                <li><strong>Adatfeldolgozó neve:</strong> Brevo (Sendinblue GmbH)</li>
-                <li><strong>Szolgáltatás:</strong> E-mail küldő és hírlevél-kezelő platform</li>
-                <li><strong>Tevékenység:</strong> Az e-mail címek biztonságos tárolása és e-mailek továbbítása.</li>
-            </ul>
-        </section>
-
-        <section class="legal-block">
-            <h2>5. AZ ÉRINTETTEK JOGAI</h2>
-            <p>A GDPR alapján Ön bármikor jogosult:</p>
-            <ul>
-                <li>Tájékoztatást kérni személyes adatai kezeléséről,</li>
-                <li>Kérni adatai helyesbítését vagy törlését ("elfeledtetéshez való jog"),</li>
-                <li>Tiltakozni az adatkezelés ellen vagy kérni annak korlátozását,</li>
-                <li>A hozzájárulását bármikor visszavonni.</li>
+                <li><strong>E-mail elérhetőség:</strong>info@hogperformance.hu</li>
             </ul>
             <p style="margin-top: 15px;">
-                Jogai gyakorlásához lépjen velünk kapcsolatba az <strong>info@hogperformance.hu</strong> e-mail címen. Jogorvoslati lehetőséggel a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH – www.naih.hu) élhet.
+                A HOG Performance jelenleg előkészítés alatt álló márka. A vállalkozás létrehozását követően az adatkezelő személye és az adatkezelési tájékoztató szükség szerint frissítésre kerül.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>2. MILYEN ADATOT KEZELÜNK?</h2>
+            <p>
+                A várólistára történő feliratkozás során kizárólag az Ön által megadott <strong>e-mail címet</strong> kezeljük. A várólistára történő feliratkozáshoz további személyes adat megadása nem szükséges.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>3. AZ ADATKEZELÉS CÉLJA</h2>
+            <p>
+                Az e-mail címet annak érdekében kezeljük, hogy a HOG Performance várólistájára feliratkozott személyeket e-mailben tájékoztassuk többek között:
+            </p>
+            <ul>
+                <li>a HOG Performance márka és termékek indulásáról,</li>
+                <li>új termékekről,</li>
+                <li>limitált kiadásokról,</li>
+                <li>a várólistához kapcsolódó releváns információkról.</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                A várólista nem napi hírlevélként működik, és nem célja kéretlen vagy irreleváns reklámlevelek küldése.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>4. AZ ADATKEZELÉS JOGALAPJA</h2>
+            <p>
+                Az adatkezelés jogalapja az érintett önkéntes, konkrét, tájékozott és egyértelmű hozzájárulása, az Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR) 6. cikk (1) bekezdés a) pontja alapján.
+            </p>
+            <p style="margin-top: 15px;">
+                A hozzájárulás bármikor visszavonható. A hozzájárulás visszavonása nem érinti a visszavonás előtt végzett adatkezelés jogszerűségét.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>5. AZ ADATOK TÁROLÁSÁNAK IDŐTARTAMA</h2>
+            <p>
+                Az e-mail címet a hozzájárulás visszavonásáig, illetve a várólistáról történő leiratkozásig kezeljük.
+            </p>
+            <p style="margin-top: 15px;">
+                A hozzájárulás visszavonása vagy a leiratkozás után az adatot töröljük, illetve az adatkezelési rendszerből eltávolítjuk, kivéve, ha annak további megőrzését jogszabály írja elő.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>6. ADATFELDOLGOZÓ</h2>
+            <p>
+                A várólista kezeléséhez és az e-mailes kommunikációhoz külső adatfeldolgozót veszünk igénybe:
+            </p>
+            <ul>
+                <li><strong>Adatfeldolgozó:</strong> Sendinblue SAS (Brevo)</li>
+                <li><strong>Székhely:</strong> 108 rue Reaumur, 75002 Paris, Franciaország</li>
+                <li><strong>Feladat:</strong> Az e-mail címek biztonságos kezelése, tárolása és az e-mailes kommunikáció technikai lebonyolítása az EU területén lévő szervereken.</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                A Brevo adatvédelmi tájékoztatója elérhető a <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener noreferrer">www.brevo.com/legal/privacypolicy/</a> címe alatt.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>7. AZ ÉRINTETT JOGAI</h2>
+            <p>Az érintett a GDPR alapján jogosult többek között:</p>
+            <ul>
+                <li>tájékoztatást kérni személyes adatai kezeléséről;</li>
+                <li>hozzáférést kérni a kezelt személyes adatokhoz;</li>
+                <li>kérni személyes adatainak helyesbítését;</li>
+                <li>kérni személyes adatainak törlését ("elfeledtetéshez való jog");</li>
+                <li>kérni az adatkezelés korlátozását;</li>
+                <li>hozzájárulását bármikor visszavonni.</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                A hozzájárulás visszavonása történhet a kiküldött e-mailek alján található leiratkozási hivatkozáson keresztül, vagy az <strong>info@hogperformance.hu</strong> címre küldött üzenettel.
+            </p>
+        </section>
+
+        <section class="legal-block">
+            <h2>8. JOGORVOSLAT</h2>
+            <p>
+                Amennyiben az érintett úgy ítéli meg, hogy személyes adatainak kezelése sérti a GDPR rendelkezéseit, panaszt tehet a felügyeleti hatóságnál.
+            </p>
+            <ul style="margin-top: 15px;">
+                <li><strong>Felügyeleti hatóság:</strong> Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</li>
+                <li><strong>Cím:</strong> 1055 Budapest, Falk Miksa utca 9–11.</li>
+                <li><strong>Weboldal:</strong> <a href="https://www.naih.hu/" target="_blank" rel="noopener noreferrer">www.naih.hu</a></li>
+            </ul>
+        </section>
+
+        <section class="legal-block">
+            <h2>9. A TÁJÉKOZTATÓ MÓDOSÍTÁSA</h2>
+            <p>
+                A HOG Performance fenntartja a jogot, hogy az adatkezelési tájékoztatót az adatkezelési gyakorlat vagy a vonatkozó jogszabályok változása esetén módosítsa. A vállalkozás létrehozását követően az adatkezelő adatai és az adatkezelési tájékoztató szükség szerint aktualizálásra kerülnek.
             </p>
         </section>
     </main>
 
     <footer>
-        <div>
+        <div class="footer-left">
             <span class="brand-footer black-ops-one-regular">HOG PERFORMANCE</span>
             <span>NO BULLSHIT. JUST PERFORMANCE.</span>
         </div>
-        <div>
-            <span>© 2026 // HOG PERFORMANCE</span>
+
+        <div class="footer-social">
+            <a href="https://www.instagram.com/hogperformance.hu/" target="_blank" rel="noopener">INSTAGRAM</a>
+            <span class="sep">//</span>
+            <a href="https://www.tiktok.com/@hogperformance" target="_blank" rel="noopener">TIKTOK</a>
+            <span class="sep">//</span>
+            <a href="https://www.youtube.com/@HOGPerformance" target="_blank" rel="noopener">YOUTUBE</a>
+            <span class="sep">//</span>
+            <a href="https://www.facebook.com/profile.php?id=61594371233206" target="_blank" rel="noopener">FACEBOOK</a>
+            <span class="sep">//</span>
+            <a href="https://x.com/hogperformace" target="_blank" rel="noopener">X</a>
+        </div>
+
+        <div class="footer-right">
+            <span><a href="privacy.html">ADATVÉDELEM</a> // © 2026</span>
         </div>
     </footer>
 
