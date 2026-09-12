@@ -860,5 +860,31 @@
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("sib-form") || document.querySelector(".sib-form") || document.querySelector("form");
+    
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        var optIn = document.getElementById("OPT_IN");
+        if (optIn && !optIn.checked) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          var errorLabel = form.querySelector(".entry_mcq .entry__error--primary");
+          if (errorLabel) {
+            errorLabel.textContent = "A folytatáshoz el kell fogadnod az adatkezelési tájékoztatót!";
+            errorLabel.style.display = "block";
+          } else {
+            alert("A folytatáshoz el kell fogadnod az adatkezelési tájékoztatót!");
+          }
+          return false;
+        }
+      }, true); // The 'true' capture phase interrupts Brevo's internal submit handler
+    }
+  });
+</script>
+
 </body>
 </html>
