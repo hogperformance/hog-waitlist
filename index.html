@@ -350,6 +350,91 @@
             background: var(--line);
         }
 
+/* ELSŐ TERMÉKEK / FIRST DROP */
+.products {
+    padding: 0 0 110px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.product-card {
+    background: var(--panel);
+    overflow: hidden;
+}
+
+.product-image {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(177, 138, 96, 0.12),
+            transparent 70%
+        );
+}
+
+.product-image img {
+    display: block;
+    width: min(100%, 360px);
+    height: auto;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+}
+
+.product-card:hover .product-image img {
+    transform: translateY(-6px);
+}
+
+.product-info {
+    padding: 24px 30px 30px;
+    border-top: 1px solid var(--line);
+}
+
+.product-code {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--coyote-light);
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.product-info h3 {
+    margin-bottom: 8px;
+    font-family: var(--font-condensed);
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE DESIGN MOBILRA */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        min-height: 320px;
+        padding: 30px;
+    }
+}
+
         .info {
             padding: 0 0 110px;
         }
@@ -638,7 +723,7 @@
                 <p class="hero-subtitle">
                     A HOG Performance első termékei készülnek.
                     Csatlakozz a várólistához, és értesülj elsőként
-                    az indulásról, a limitált kiadásokról és a
+                    az indulásról, a limitált kiadásokról és
                     a kulisszák mögötti fejlesztésekről.
                 </p>
 
@@ -764,6 +849,41 @@
                         <span class="status-value">ÉPÜL</span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+<!-- FIRST DROP / MOCKUP SZEKCIÓ -->
+        <section class="products">
+            <div class="section-divider">FIRST DROP // 001</div>
+
+            <h2 class="section-heading black-ops-one-regular">
+                AMI <span>ÉPÜL.</span>
+            </h2>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="HOG_Whey_Mockup.png" alt="HOG Performance Whey Protein">
+                    </div>
+
+                    <div class="product-info">
+                        <span class="product-code">01 // FIRST DROP</span>
+                        <h3>WHEY PROTEIN</h3>
+                        <p>FEJLESZTÉS ALATT.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="HOG_Creatine_Mockup.png" alt="HOG Performance Creatine Monohydrate">
+                    </div>
+
+                    <div class="product-info">
+                        <span class="product-code">02 // FIRST DROP</span>
+                        <h3>CREATINE MONOHYDRATE</h3>
+                        <p>FEJLESZTÉS ALATT.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
