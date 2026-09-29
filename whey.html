@@ -1,0 +1,1720 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HOG Performance // Whey Protein</title>
+
+    <meta name="description" content="HOG Performance Whey Protein. Jó minőségű tejsavófehérje. Felesleges sallangok nélkül. NO BULLSHIT. JUST PERFORMANCE.">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================
+           LOCAL FONT
+           ========================================= */
+
+        @font-face {
+            font-family: 'Black Ops One';
+            src: url('BlackOpsOne-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .black-ops-one-regular {
+            font-family: 'Black Ops One', 'Oswald', 'Impact', 'Arial Black', 'Trebuchet MS', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        /* =========================================
+           VARIABLES
+           ========================================= */
+
+        :root {
+            --bg: #151613;
+            --panel: #20221d;
+            --coyote: #8a6a47;
+            --coyote-light: #b18a60;
+            --text: #e8e4da;
+            --muted: #96968d;
+            --muted-2: #686960;
+            --line: rgba(232, 228, 218, 0.11);
+            --line-strong: rgba(232, 228, 218, 0.18);
+
+            --font-condensed: 'Barlow Condensed', 'Oswald', sans-serif;
+        }
+
+
+        /* =========================================
+           RESET
+           ========================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    ellipse at 50% -10%,
+                    rgba(138, 106, 71, 0.20),
+                    transparent 55%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                "Inter",
+                system-ui,
+                -apple-system,
+                sans-serif;
+        }
+
+
+        /* =========================================
+           BACKGROUND GRID
+           ========================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.35;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 48px 48px;
+        }
+
+
+        /* =========================================
+           PAGE
+           ========================================= */
+
+        .page {
+            position: relative;
+
+            width: min(1180px, 100%);
+
+            margin: auto;
+
+            padding: 0 28px;
+        }
+
+
+        /* =========================================
+           HEADER
+           ========================================= */
+
+        header {
+            height: 82px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+
+            display: block;
+
+            filter: brightness(0) invert(1);
+
+            transition: opacity 0.2s ease;
+        }
+
+        .logo-mark-fallback {
+            display: none;
+
+            width: 38px;
+            height: 38px;
+
+            place-items: center;
+
+            border: 1px solid var(--coyote);
+
+            color: var(--coyote-light);
+
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+
+            letter-spacing: 0.05em;
+
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--coyote-light);
+        }
+
+        .header-code {
+            color: var(--muted-2);
+
+            font-family: var(--font-condensed);
+
+            font-size: 12px;
+            font-weight: 600;
+
+            letter-spacing: 0.2em;
+        }
+
+
+        /* =========================================
+           COMMON
+           ========================================= */
+
+        .classification {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 7px 12px;
+
+            border: 1px solid rgba(177, 138, 96, 0.35);
+
+            color: var(--coyote-light);
+
+            font-family: var(--font-condensed);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.2em;
+        }
+
+        .classification::before {
+            content: "";
+
+            width: 6px;
+            height: 6px;
+
+            background: var(--coyote-light);
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            color: var(--muted-2);
+
+            font-family: var(--font-condensed);
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 0.2em;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: var(--line);
+        }
+
+
+        /* =========================================
+           PRODUCT HERO
+           ========================================= */
+
+        .product-hero {
+            min-height: calc(100vh - 82px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 75px 0 100px;
+        }
+
+        .product-hero-content {
+            width: min(900px, 100%);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-hero h1 {
+            margin-top: 30px;
+
+            font-size: clamp(52px, 10vw, 120px);
+
+            line-height: 0.92;
+
+            letter-spacing: 0.03em;
+
+            text-transform: uppercase;
+        }
+
+        .product-hero h1 .accent {
+            color: var(--coyote-light);
+        }
+
+        .slogan-tag {
+            margin-top: 20px;
+
+            color: var(--coyote-light);
+
+            font-size: clamp(16px, 2.5vw, 22px);
+
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+        }
+
+        .product-hero-image {
+            margin-top: 50px;
+
+            width: min(520px, 90%);
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .product-hero-image img {
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 25px 35px rgba(0,0,0,0.65)
+                );
+        }
+
+
+        /* =========================================
+           PRODUCT SECTIONS
+           ========================================= */
+
+        .product-section {
+            padding: 0 0 110px;
+        }
+
+        .product-intro {
+            margin-top: 25px;
+        }
+
+        .section-heading {
+            margin: 25px 0 40px;
+
+            font-size: clamp(36px, 5vw, 58px);
+
+            line-height: 1.05;
+
+            letter-spacing: 0.02em;
+
+            text-transform: uppercase;
+        }
+
+        .section-heading span {
+            color: var(--coyote-light);
+        }
+
+
+        /* =========================================
+           COPY
+           ========================================= */
+
+        .product-copy {
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            line-height: 1.9;
+        }
+
+        .product-copy p {
+            margin-bottom: 24px;
+        }
+
+        .product-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-copy.large-copy {
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .copy-highlight {
+            color: var(--text);
+
+            font-family: var(--font-condensed);
+
+            font-size: 25px;
+            font-weight: 800;
+
+            letter-spacing: 0.03em;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           PRODUCT PANEL
+           ========================================= */
+
+        .product-panel {
+            padding: 55px 50px;
+
+            border: 1px solid var(--line);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(138, 106, 71, 0.08),
+                    transparent 55%
+                ),
+                var(--panel);
+        }
+
+        .product-panel-label {
+            margin-bottom: 28px;
+
+            color: var(--coyote-light);
+
+            font-family: var(--font-condensed);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 0.18em;
+        }
+
+        .product-panel h2 {
+            margin-bottom: 35px;
+
+            font-size: clamp(34px, 5vw, 60px);
+
+            line-height: 1;
+
+            text-transform: uppercase;
+        }
+
+        .product-panel h2 span {
+            color: var(--coyote-light);
+        }
+
+
+        /* =========================================
+           INGREDIENT GRID
+           ========================================= */
+
+        .ingredient-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 1px;
+
+            background: var(--line);
+
+            border: 1px solid var(--line);
+        }
+
+        .ingredient-card {
+            min-height: 210px;
+
+            padding: 30px;
+
+            background: var(--panel);
+        }
+
+        .ingredient-number {
+            display: block;
+
+            margin-bottom: 50px;
+
+            color: var(--coyote-light);
+
+            font-family: var(--font-condensed);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.18em;
+        }
+
+        .ingredient-card h3 {
+            margin-bottom: 10px;
+
+            color: #fff;
+
+            font-family: var(--font-condensed);
+
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .ingredient-card p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .product-statement {
+            margin-top: 35px;
+
+            text-align: center;
+        }
+
+        .product-statement span {
+            color: var(--coyote-light);
+
+            font-family:
+                'Black Ops One',
+                'Oswald',
+                sans-serif;
+
+            font-size: clamp(36px, 7vw, 80px);
+
+            letter-spacing: 0.04em;
+        }
+
+
+        /* =========================================
+           USE LIST
+           ========================================= */
+
+        .use-list {
+            margin: 35px 0;
+
+            padding-left: 25px;
+
+            border-left: 2px solid var(--coyote);
+        }
+
+        .use-list div {
+            margin: 10px 0;
+
+            color: var(--text);
+
+            font-family: var(--font-condensed);
+
+            font-size: 20px;
+            font-weight: 700;
+
+            letter-spacing: 0.05em;
+        }
+
+
+        /* =========================================
+           EXCLUSION LIST
+           ========================================= */
+
+        .exclusion-list {
+            display: flex;
+            flex-direction: column;
+
+            border: 1px solid var(--line);
+
+            background: var(--panel);
+        }
+
+        .exclusion-item {
+            display: grid;
+
+            grid-template-columns: 45px 1fr;
+
+            align-items: center;
+
+            min-height: 72px;
+
+            padding: 12px 25px;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .exclusion-item:last-child {
+            border-bottom: 0;
+        }
+
+        .exclusion-item span {
+            color: var(--coyote-light);
+
+            font-size: 22px;
+        }
+
+        .exclusion-item strong {
+            color: var(--text);
+
+            font-family: var(--font-condensed);
+
+            font-size: 17px;
+            font-weight: 700;
+
+            letter-spacing: 0.03em;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           MANIFESTO
+           ========================================= */
+
+        .manifesto-box {
+            position: relative;
+
+            padding: 65px 50px;
+
+            border: 1px solid var(--line);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(138, 106, 71, 0.10),
+                    transparent 50%
+                ),
+                var(--panel);
+        }
+
+        .manifesto-box::before {
+            content: "HOG // FIELD NOTE";
+
+            position: absolute;
+
+            top: 18px;
+            right: 22px;
+
+            color: var(--muted-2);
+
+            font-family: var(--font-condensed);
+
+            font-size: 10px;
+
+            letter-spacing: 0.18em;
+        }
+
+        .manifesto-text {
+            max-width: 850px;
+
+            font-family: var(--font-condensed);
+
+            font-size: clamp(26px, 4.5vw, 48px);
+
+            font-weight: 800;
+
+            line-height: 1.25;
+
+            text-transform: uppercase;
+        }
+
+        .manifesto-text strong {
+            color: var(--coyote-light);
+
+            display: block;
+        }
+
+
+        /* =========================================
+           FINAL
+           ========================================= */
+
+        .product-final {
+            padding: 0 0 120px;
+        }
+
+        .product-final-inner {
+            padding: 65px 50px 70px;
+
+            text-align: center;
+
+            border: 1px solid var(--line);
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(138, 106, 71, 0.12),
+                    transparent 65%
+                ),
+                var(--panel);
+        }
+
+        .final-copy {
+            max-width: 700px;
+
+            margin: 45px auto 0;
+
+            color: var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+        .final-actions {
+            display: flex;
+            flex-direction: column;
+
+            gap: 4px;
+
+            margin-top: 40px;
+        }
+
+        .final-actions strong {
+            color: var(--text);
+
+            font-family:
+                'Black Ops One',
+                'Oswald',
+                sans-serif;
+
+            font-size: clamp(24px, 4vw, 42px);
+
+            letter-spacing: 0.04em;
+        }
+
+        .final-actions strong:nth-child(2) {
+            color: var(--coyote-light);
+        }
+
+        .final-brand {
+            margin-top: 65px;
+
+            color: var(--text);
+
+            font-size: clamp(30px, 5vw, 55px);
+
+            line-height: 1;
+
+            letter-spacing: 0.04em;
+        }
+
+        .final-brand span {
+            color: var(--coyote-light);
+        }
+
+        .final-slogan {
+            margin-top: 18px;
+
+            color: var(--coyote-light);
+
+            font-size: clamp(14px, 2vw, 20px);
+
+            letter-spacing: 0.12em;
+        }
+
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+
+        footer {
+            padding: 30px 0 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-top: 1px solid var(--line);
+
+            color: var(--muted-2);
+
+            font-family: var(--font-condensed);
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 0.15em;
+
+            gap: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+        footer .brand-footer {
+            font-size: 14px;
+
+            color: var(--text);
+        }
+
+        .footer-social {
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+        }
+
+        .footer-social a {
+            color: var(--muted);
+
+            text-decoration: none;
+
+            transition: color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--coyote-light);
+        }
+
+        .footer-social .sep {
+            color: var(--muted-2);
+
+            opacity: 0.5;
+        }
+
+        footer a {
+            color: var(--muted-2);
+
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: var(--coyote-light);
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 768px) {
+
+            .page {
+                padding: 0 18px;
+            }
+
+            header {
+                height: 70px;
+            }
+
+            .logo-img {
+                height: 34px;
+            }
+
+            .logo-mark-fallback {
+                width: 32px;
+                height: 32px;
+
+                font-size: 16px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .header-code {
+                display: none;
+            }
+
+
+            /* HERO */
+
+            .product-hero {
+                min-height: auto;
+
+                padding: 50px 0 80px;
+            }
+
+            .product-hero h1 {
+                font-size: clamp(42px, 13vw, 60px);
+            }
+
+            .product-hero-image {
+                margin-top: 35px;
+
+                width: 90%;
+            }
+
+
+            /* SECTIONS */
+
+            .product-section {
+                padding-bottom: 80px;
+            }
+
+            .section-heading {
+                font-size: clamp(32px, 9vw, 48px);
+            }
+
+
+            /* COPY */
+
+            .product-copy {
+                font-size: 14px;
+
+                line-height: 1.8;
+            }
+
+            .product-copy.large-copy {
+                font-size: 15px;
+            }
+
+            .copy-highlight {
+                font-size: 22px;
+            }
+
+
+            /* PANEL */
+
+            .product-panel {
+                padding: 35px 22px;
+            }
+
+
+            /* INGREDIENTS */
+
+            .ingredient-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ingredient-card {
+                min-height: auto;
+
+                padding: 25px;
+            }
+
+            .ingredient-number {
+                margin-bottom: 30px;
+            }
+
+
+            /* USE */
+
+            .use-list {
+                padding-left: 18px;
+            }
+
+            .use-list div {
+                font-size: 17px;
+            }
+
+
+            /* EXCLUSIONS */
+
+            .exclusion-item {
+                grid-template-columns: 32px 1fr;
+
+                padding: 12px 18px;
+            }
+
+            .exclusion-item strong {
+                font-size: 15px;
+            }
+
+
+            /* MANIFESTO */
+
+            .manifesto-box {
+                padding: 40px 20px;
+            }
+
+            .manifesto-text {
+                font-size: 24px;
+
+                line-height: 1.3;
+            }
+
+
+            /* FINAL */
+
+            .product-final {
+                padding-bottom: 80px;
+            }
+
+            .product-final-inner {
+                padding: 45px 22px 55px;
+            }
+
+            .final-brand {
+                margin-top: 50px;
+            }
+
+
+            /* FOOTER */
+
+            footer {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 16px;
+            }
+
+            .footer-social {
+                flex-wrap: wrap;
+
+                gap: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header>
+
+        <a href="#" class="logo">
+
+            <img
+                src="HOG_Logo_Concept_003.svg"
+                alt="HOG Performance Logo"
+                class="logo-img"
+                onerror="
+                    if (this.src.endsWith('.svg')) {
+                        this.src='HOG_Logo_Concept_003.png';
+                    } else {
+                        this.style.display='none';
+                        document.querySelector('.logo-mark-fallback').style.display='grid';
+                    }
+                "
+            >
+
+            <div class="logo-mark-fallback black-ops-one-regular">
+                H
+            </div>
+
+            <div class="logo-text black-ops-one-regular">
+                HOG <span>PERFORMANCE</span>
+            </div>
+
+        </a>
+
+        <div class="header-code">
+            PRODUCT FILE // 001
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
+    <main>
+
+
+        <!-- PRODUCT HERO -->
+
+        <section class="product-hero">
+
+            <div class="product-hero-content">
+
+                <div class="classification">
+                    HOG PERFORMANCE // PRODUCT 001
+                </div>
+
+                <h1 class="black-ops-one-regular">
+                    WHEY<br>
+                    <span class="accent">PROTEIN</span>
+                </h1>
+
+                <div class="slogan-tag black-ops-one-regular">
+                    NO BULLSHIT. JUST PERFORMANCE.
+                </div>
+
+                <div class="product-hero-image">
+
+                    <img
+                        src="HOG_Whey_Mockup.png"
+                        alt="HOG Performance Whey Protein"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             INTRO
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                FIELD NOTE // 001
+            </div>
+
+            <div class="product-intro">
+
+                <h2 class="section-heading black-ops-one-regular">
+                    A FEHÉRJE<br>
+                    <span>NEM ATTÓL JÓ,</span><br>
+                    HOGY DRÁGA.
+                </h2>
+
+                <div class="product-copy">
+
+                    <p>
+                        És nem minden olcsó fehérje azért olcsó,
+                        mert valaki egyszerűen kevesebbet kér érte.
+                    </p>
+
+                    <p>
+                        Van, ahol az alapanyag minőségén spórolnak.
+                        Van, ahol az olcsóbb megoldásokat próbálják
+                        feljavítani mindenféle hozzáadott aminosavval.
+                    </p>
+
+                    <p>
+                        Mi nem ezt az utat akartuk.
+                    </p>
+
+                    <p>
+                        Nem azt kerestük, hogyan lehet egy gyengébb
+                        alapanyagot minél szebben eladni.
+                    </p>
+
+                    <p>
+                        Hanem egy jó minőségű tejsavófehérjét akartunk.
+                    </p>
+
+                    <p class="copy-highlight">
+                        Felesleges sallangok nélkül.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             NO UNNECESSARY SHIT
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                NO UNNECESSARY SHIT
+            </div>
+
+            <div class="product-panel">
+
+                <div class="product-panel-label">
+                    HOG // PRINCIPLE 01
+                </div>
+
+                <h2 class="black-ops-one-regular">
+                    NEM KELL<br>
+                    <span>A CÍMKÉRE MINDEN.</span>
+                </h2>
+
+                <div class="product-copy">
+
+                    <p>
+                        Nem kell egy adagba belepakolni fél gyógyszertárat
+                        csak azért, hogy hosszabb legyen az összetevőlista.
+                    </p>
+
+                    <p>
+                        Nem kell olyan „csodakomponensekkel” teleírni a címkét,
+                        amelyek jól mutatnak a marketinganyagban, de egy normális
+                        fehérjeturmixot nem tesznek jobbá.
+                    </p>
+
+                    <p>
+                        És nem kell harmincféle íz sem.
+                    </p>
+
+                    <p class="copy-highlight">
+                        Mi inkább két kurva jóval kezdünk.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHAT'S IN IT
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                FORMULA // 001
+            </div>
+
+            <h2 class="section-heading black-ops-one-regular">
+                MI VAN<br>
+                <span>BENNE?</span>
+            </h2>
+
+            <div class="ingredient-grid">
+
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">
+                        01
+                    </span>
+
+                    <h3>
+                        TEJSAVÓFEHÉRJE
+                    </h3>
+
+                    <p>
+                        Jó minőségű tejsavófehérje.
+                    </p>
+
+                </div>
+
+
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">
+                        02
+                    </span>
+
+                    <h3>
+                        FEHÉRJETARTALOM
+                    </h3>
+
+                    <p>
+                        Magas fehérjetartalom.
+                    </p>
+
+                </div>
+
+
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">
+                        03
+                    </span>
+
+                    <h3>
+                        CUKORTARTALOM
+                    </h3>
+
+                    <p>
+                        Alacsony cukortartalom.
+                    </p>
+
+                </div>
+
+
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">
+                        04
+                    </span>
+
+                    <h3>
+                        ÖSSZETÉTEL
+                    </h3>
+
+                    <p>
+                        Egyszerű összetétel.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="product-statement">
+                <span>ENNYI.</span>
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHAT IS IT FOR
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                FIELD USE // 001
+            </div>
+
+            <div class="product-panel">
+
+                <div class="product-panel-label">
+                    HOG // USE CASE
+                </div>
+
+                <div class="product-copy large-copy">
+
+                    <p>
+                        A HOG Performance Whey Protein arra való,
+                        amire egy fehérjének valóban szüksége van:
+                    </p>
+
+                    <p>
+                        hogy egyszerű és kényelmes módon segítsen
+                        fedezni a napi fehérjebeviteledet.
+                    </p>
+
+                    <div class="use-list">
+
+                        <div>
+                            EDZÉS UTÁN.
+                        </div>
+
+                        <div>
+                            REGGEL.
+                        </div>
+
+                        <div>
+                            NAPKÖZBEN.
+                        </div>
+
+                        <div>
+                            EGY HOSSZÚ, NEHÉZ NAP VÉGÉN.
+                        </div>
+
+                        <div>
+                            VAGY AMIKOR EGÉSZ NAP TEREPEN VAGY.
+                        </div>
+
+                    </div>
+
+                    <p class="copy-highlight">
+                        Amikor szükséged van rá.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             NO DESSERT
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                NO DESSERT
+            </div>
+
+            <div class="product-copy">
+
+                <p>
+                    Nem akarunk belőle desszertet csinálni.
+                </p>
+
+                <p>
+                    Ha ízorgiára vágysz, keverj magadnak egy turmixot
+                    banánnal, mogyoróvajjal és csokoládéval.
+                </p>
+
+                <p>
+                    Vagy húzzál egy csicsás kávézóba egy 2500 forintos
+                    lattéra, aminek a nevét tovább tart kimondani,
+                    mint meginni.
+                </p>
+
+                <p>
+                    Mi nem egy cukrászdát akartunk a zacskóba zárni.
+                </p>
+
+                <p class="copy-highlight">
+                    Egy kurva jó fehérjét akartunk.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHAT'S NOT IN IT
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                FORMULA // 002
+            </div>
+
+            <h2 class="section-heading black-ops-one-regular">
+                MI NINCS<br>
+                <span>BENNE?</span>
+            </h2>
+
+            <div class="exclusion-list">
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        Felesleges cukorhegyek
+                    </strong>
+
+                </div>
+
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        Túlbonyolított összetevőlista
+                    </strong>
+
+                </div>
+
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        Felesleges „csodakomponensek”,
+                        csak azért, hogy jól mutassanak a címkén
+                    </strong>
+
+                </div>
+
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        Aminosavakkal felpumpált látszatminőség
+                    </strong>
+
+                </div>
+
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        Kamu ígéretek
+                    </strong>
+
+                </div>
+
+
+                <div class="exclusion-item">
+
+                    <span>×</span>
+
+                    <strong>
+                        30 féle íz, amiből úgyis mindig ugyanazt a kettőt veszed
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHAT WE DON'T PROMISE
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                NO FALSE PROMISES
+            </div>
+
+            <div class="manifesto-box">
+
+                <div class="manifesto-text">
+
+                    Nem ígérjük, hogy két hét alatt 10 kiló izmot
+                    szedsz magadra.
+
+                    <br><br>
+
+                    Nem ígérjük, hogy egy turmix majd helyetted edz.
+
+                    <br><br>
+
+                    Nem ígérjük, hogy ettől hirtelen mindenki rád
+                    fog irigykedni az edzőteremben.
+
+                    <br><br>
+
+                    <strong>
+                        Mert ilyen nincs.
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             REALITY
+             ========================================= -->
+
+        <section class="product-section">
+
+            <div class="section-divider">
+                FIELD NOTE // 002
+            </div>
+
+            <div class="product-copy large-copy">
+
+                <p>
+                    A fejlődéshez edzés kell.
+                    Megfelelő táplálkozás.
+                    Regeneráció.
+                    És idő.
+                </p>
+
+                <p>
+                    A fehérje pedig ebben nem varázsszer.
+                </p>
+
+                <p class="copy-highlight">
+                    Egy eszköz.
+                </p>
+
+                <p>
+                    Mi pedig egy olyan eszközt akartunk adni neked,
+                    amit jó érzéssel teszel a táskádba minden nap.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             FINAL
+             ========================================= -->
+
+        <section class="product-final">
+
+            <div class="product-final-inner">
+
+                <div class="section-divider">
+                    HOG PERFORMANCE // 001
+                </div>
+
+                <div class="final-copy">
+
+                    <p>
+                        Nem kell túlgondolni.
+                    </p>
+
+                    <p>
+                        Nem kell túlfizetni.
+                    </p>
+
+                    <div class="final-actions">
+
+                        <strong>
+                            CSAK KEVERD BE.
+                        </strong>
+
+                        <strong>
+                            IDD MEG.
+                        </strong>
+
+                        <strong>
+                            DOLGOZZ TOVÁBB.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="final-brand black-ops-one-regular">
+
+                    HOG PERFORMANCE<br>
+
+                    <span>
+                        WHEY PROTEIN
+                    </span>
+
+                </div>
+
+
+                <div class="final-slogan black-ops-one-regular">
+                    NO BULLSHIT. JUST PERFORMANCE.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer>
+
+        <div class="footer-left">
+
+            <span class="brand-footer black-ops-one-regular">
+                HOG PERFORMANCE
+            </span>
+
+            <span>
+                NO BULLSHIT. JUST PERFORMANCE.
+            </span>
+
+        </div>
+
+
+        <div class="footer-social">
+
+            <a
+                href="https://www.instagram.com/hogperformance.hu/"
+                target="_blank"
+                rel="noopener"
+            >
+                INSTAGRAM
+            </a>
+
+            <span class="sep">//</span>
+
+            <a
+                href="https://www.tiktok.com/@hogperformance"
+                target="_blank"
+                rel="noopener"
+            >
+                TIKTOK
+            </a>
+
+            <span class="sep">//</span>
+
+            <a
+                href="https://www.youtube.com/@HOGPerformance"
+                target="_blank"
+                rel="noopener"
+            >
+                YOUTUBE
+            </a>
+
+            <span class="sep">//</span>
+
+            <a
+                href="https://www.facebook.com/profile.php?id=61594371233206"
+                target="_blank"
+                rel="noopener"
+            >
+                FACEBOOK
+            </a>
+
+            <span class="sep">//</span>
+
+            <a
+                href="https://x.com/hogperform_hu"
+                target="_blank"
+                rel="noopener"
+            >
+                X
+            </a>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <span>
+                <a href="privacy.html">
+                    ADATVÉDELEM
+                </a>
+
+                // © 2026
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
+
